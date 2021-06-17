@@ -44,7 +44,7 @@ class DataPrep:
 
         cleaned_reviews = df['review'].apply(clean_text)
 
-        # df = df.assign(label=lambda x: np.where(x.sentiment == 'positive', 1, 0))
+        df = df.assign(label=lambda x: np.where(x.sentiment == 'positive', 1, 0))
 
         x_train, x_test, y_train, y_test = \
             train_test_split(cleaned_reviews,
