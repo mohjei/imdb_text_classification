@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     sw = Stopwatch(start=True)
 
-    data_prep = DataPrep(fname='reviews.csv')
+    data_prep = DataPrep(fname='data.csv')
 
     x_train, x_test, y_train, y_test = data_prep.prep_data()
 
