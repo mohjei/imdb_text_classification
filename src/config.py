@@ -16,9 +16,9 @@ class MlConf:
     kernel_size_4 = 5
     dropout_rate = 0.4
     hidden_dense = 36
-    out_dense = 2
+    out_dense = 1 
     learning_rate = 0.001
     hidden_activation = 'relu'
-    out_activation = 'softmax'
+    out_activation = 'sigmoid'
     batch_size = 128
     epochs = 2

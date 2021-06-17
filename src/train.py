@@ -40,9 +40,7 @@ class CnnTrain:
     @staticmethod
     def get_class_weights(y):
 
-        y_integers = np.argmax(y, axis=1)
-
-        class_weights = compute_class_weight('balanced', np.unique(y_integers), y_integers)
+        class_weights = compute_class_weight('balanced', np.unique(y), y)
 
         return dict(enumerate(class_weights))
     
@@ -81,7 +79,7 @@ class CnnTrain:
 
         model.summary()
 
-        model.compile(loss=tf.keras.losses.CategoricalCrossentropy(), 
+        model.compile(loss=tf.keras.losses.BinaryCrossentropy(), 
                         optimizer=tf.keras.optimizers.Adam(self.learning_rate),
                         metrics=tf.keras.metrics.AUC(name='auc'))
 
@@ -112,5 +110,3 @@ class CnnTrain:
         logger.info(f'Model evaluation using test set: ')
         for k, v in metric_dict.items():
             logger.info(f'{k} score: {v}')
-
-        return model

@@ -26,13 +26,11 @@ def pad_seq(seq, maxlen=MlConf.max_len):
 
 def clf_metrics(y_true, y_pred):
 
-    y_true = np.argmax(y_true, axis=1)
-
-    y_pred = np.argmax(y_pred, axis=1)
+    y_label = np.where(y_pred >= 0.5, 1, 0)
 
     metric_dict = dict()
 
-    acc = np.round(accuracy_score(y_true, y_pred), 2)
+    acc = np.round(accuracy_score(y_true, y_label), 2)
 
     metric_dict.update({'accuracy': acc})
 
@@ -40,13 +38,11 @@ def clf_metrics(y_true, y_pred):
 
     metric_dict.update({'AUC': auc})
 
-    f1 = np.round(f1_score(y_true, y_pred, average='weighted'), 2)
+    f1 = np.round(f1_score(y_true, y_label), 2)
 
     metric_dict.update({'F1': f1})
 
-    fbeta = np.round(fbeta_score(y_true, y_pred, average='weighted', beta=0.5), 2)
-
-    metric_dict.update({'F-beta': fbeta})
+    print(classification_report(y_true, y_label))
 
     return metric_dict
 
