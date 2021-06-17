@@ -15,6 +15,6 @@ if __name__ == '__main__':
 
     cnn_train = CnnTrain()
 
-    model = cnn_train.cnn_fit(x_train, x_test, y_train, y_test)
+    cnn_train.cnn_fit(x_train, x_test, y_train, y_test)
 
     logger.info(f'Total elapsed time: {sw.elapsed.human_str()}')

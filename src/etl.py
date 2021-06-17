@@ -44,7 +44,7 @@ class DataPrep:
 
         cleaned_reviews = df['review'].apply(clean_text)
 
-        df = df.assign(label=np.where(lambda x: x.sentiment == 'positive', 1, 0))
+        # df = df.assign(label=lambda x: np.where(x.sentiment == 'positive', 1, 0))
 
         x_train, x_test, y_train, y_test = \
             train_test_split(cleaned_reviews,
@@ -53,10 +53,6 @@ class DataPrep:
                              stratify=df[['label']],
                              shuffle=True,
                              random_state=0)
-
-        # one-hot encoding
-        y_train = tf.keras.utils.to_categorical(y_train)
-        y_test = tf.keras.utils.to_categorical(y_test)
 
         logger.info(f'Tokenizing reviews')
 
