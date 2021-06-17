@@ -60,11 +60,13 @@ class DataPrep:
         token = tokenizer(x_train)
 
         logger.info(f'Converting texts into sequences')
+        
         # texts_to_sequences
         x_train = text_to_seq(token, x_train)
         x_test = text_to_seq(token, x_test)
 
         logger.info(f'Padding sequences')
+
         # padding
         x_train = pad_seq(x_train)
         x_test = pad_seq(x_test)
